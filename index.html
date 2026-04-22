@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Тестирование по мультимедиа</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>
+          <i class="fas fa-question-circle"></i> Тестирование по мультимедиа
+        </h1>
+        <p class="subtitle">
+          Проверьте свои знания в области мультимедийных технологий
+        </p>
+      </header>
+
+      <div class="quiz-container" id="quiz-container">
+        <div class="start-screen" id="start-screen">
+          <div class="start-content">
+            <h2>Инструкция к тесту</h2>
+            <ul>
+              <li>
+                <i class="fas fa-check-circle"></i> Всего 30 вопросов по теме
+                мультимедиа
+              </li>
+              <li>
+                <i class="fas fa-random"></i> Вопросы и варианты ответов
+                перемешиваются
+              </li>
+              <li>
+                <i class="fas fa-clock"></i> На прохождение теста нет
+                ограничений по времени
+              </li>
+              <li>
+                <i class="fas fa-check-double"></i> Можно выбирать несколько
+                вариантов ответа
+              </li>
+              <li>
+                <i class="fas fa-arrow-right"></i> Проверка происходит при
+                нажатии "Следующий"
+              </li>
+              <li>
+                <i class="fas fa-star"></i> Полный балл за вопрос - если выбраны
+                все правильные ответы
+              </li>
+              <li>
+                <i class="fas fa-chart-bar"></i> Результат будет показан после
+                завершения теста
+              </li>
+            </ul>
+            <button id="start-btn" class="btn start-btn">
+              <i class="fas fa-play"></i> Начать тест
+            </button>
+          </div>
+        </div>
+
+        <div class="quiz-screen hidden" id="quiz-screen">
+          <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+            <div class="progress-text" id="progress-text">Вопрос 0 из 0</div>
+          </div>
+
+          <div class="question-container">
+            <div class="question-header">
+              <h2 id="question">Текст вопроса появится здесь</h2>
+              <div class="selection-info" id="selection-info">
+                <i class="fas fa-mouse-pointer"></i> Выбрано:
+                <span id="selected-count">0</span> из
+                <span id="total-options">0</span>
+              </div>
+            </div>
+
+            <!-- Блок обратной связи -->
+            <div class="feedback-container hidden" id="feedback-container">
+              <div class="feedback correct-feedback" id="correct-feedback">
+                <i class="fas fa-check-circle"></i>
+                <div class="feedback-content">
+                  <span class="feedback-title"
+                    >Правильно! Отличная работа!</span
+                  >
+                  <span class="feedback-detail"
+                    >Вы выбрали все правильные ответы</span
+                  >
+                </div>
+              </div>
+              <div class="feedback partially-feedback" id="partially-feedback">
+                <i class="fas fa-exclamation-circle"></i>
+                <div class="feedback-content">
+                  <span class="feedback-title">Частично правильно</span>
+                  <span class="feedback-detail"
+                    >Вы выбрали <span id="partial-correct-count">0</span> из
+                    <span id="total-correct-count">0</span> правильных
+                    ответов</span
+                  >
+                </div>
+              </div>
+              <div class="feedback incorrect-feedback" id="incorrect-feedback">
+                <i class="fas fa-times-circle"></i>
+                <div class="feedback-content">
+                  <span class="feedback-title">Неправильно</span>
+                  <span class="feedback-detail"
+                    >Правильные ответы: <span id="correct-answers-text"></span
+                  ></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="options-container" id="options-container">
+              <!-- Варианты ответов будут здесь -->
+            </div>
+
+            <div class="question-hint">
+              <i class="fas fa-info-circle"></i> Выберите один или несколько
+              вариантов ответа
+            </div>
+          </div>
+
+          <div class="navigation">
+            <button id="prev-btn" class="btn prev-btn" disabled>
+              <i class="fas fa-arrow-left"></i> Предыдущий
+            </button>
+            <button id="check-btn" class="btn check-btn">
+              <i class="fas fa-check"></i> Проверить и продолжить
+            </button>
+            <button id="next-btn" class="btn next-btn hidden">
+              Следующий <i class="fas fa-arrow-right"></i>
+            </button>
+            <button id="submit-btn" class="btn submit-btn hidden">
+              <i class="fas fa-paper-plane"></i> Завершить тест
+            </button>
+          </div>
+        </div>
+
+        <div class="result-screen hidden" id="result-screen">
+          <div class="result-content">
+            <h2>Результаты тестирования</h2>
+            <div class="score-circle">
+              <div class="circle">
+                <span id="score">0</span>
+                <div class="score-label">из 30</div>
+              </div>
+              <div class="percentage" id="percentage">0%</div>
+            </div>
+
+            <div class="result-details">
+              <div class="result-item correct">
+                <i class="fas fa-check"></i>
+                <span
+                  >Правильные ответы:
+                  <strong id="correct-count">0</strong></span
+                >
+              </div>
+              <div class="result-item partially">
+                <i class="fas fa-exclamation"></i>
+                <span
+                  >Частично правильные:
+                  <strong id="partial-count">0</strong></span
+                >
+              </div>
+              <div class="result-item incorrect">
+                <i class="fas fa-times"></i>
+                <span
+                  >Неправильные ответы:
+                  <strong id="incorrect-count">0</strong></span
+                >
+              </div>
+            </div>
+
+            <div class="result-actions">
+              <button id="restart-btn" class="btn restart-btn">
+                <i class="fas fa-redo"></i> Пройти тест снова
+              </button>
+              <button id="review-btn" class="btn review-btn">
+                <i class="fas fa-eye"></i> Просмотреть ответы
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-screen hidden" id="review-screen">
+          <div class="review-header">
+            <h2>Просмотр ответов</h2>
+            <p>
+              <span class="correct-badge"
+                ><i class="fas fa-check"></i> Зеленый</span
+              >
+              - правильные ответы,
+              <span class="partial-badge"
+                ><i class="fas fa-exclamation"></i> Желтый</span
+              >
+              - выбранные вами ответы,
+              <span class="incorrect-badge"
+                ><i class="fas fa-times"></i> Красный</span
+              >
+              - неправильные выбранные ответы
+            </p>
+          </div>
+
+          <div class="review-container" id="review-container">
+            <!-- Обзор вопросов будет здесь -->
+          </div>
+
+          <div class="review-actions">
+            <button id="back-to-results-btn" class="btn">
+              <i class="fas fa-arrow-left"></i> Назад к результатам
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>Гарантия верности ответов не даётся!</p>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

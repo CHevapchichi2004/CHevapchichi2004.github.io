@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Градиентный фон -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#667eea" />
+      <stop offset="100%" stop-color="#764ba2" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Круглый фон с градиентом -->
+  <circle cx="50" cy="50" r="45" fill="url(#gradient)" />
+  
+  <!-- Абстрактный узор в центре -->
+  <path d="M50 30 L65 50 L50 70 L35 50 Z" fill="white" opacity="0.9" />
+  <circle cx="50" cy="50" r="15" fill="none" stroke="white" stroke-width="3" opacity="0.8" />
+  
+  <!-- Декоративные точки -->
+  <circle cx="30" cy="30" r="4" fill="white" opacity="0.7" />
+  <circle cx="70" cy="30" r="3" fill="white" opacity="0.7" />
+  <circle cx="70" cy="70" r="4" fill="white" opacity="0.7" />
+  <circle cx="30" cy="70" r="3" fill="white" opacity="0.7" />
+</svg>
